@@ -1,13 +1,7 @@
 "use client";
 
-import BuyCreditsModal from "./BuyCreditsModal";
-import OutOfCreditsModal from "./OutOfCreditsModal";
+import CreditPurchaseModal from "./CreditPurchaseModal";
 
 export default function ModalProvider() {
-  return (
-    <>
-      <OutOfCreditsModal />
-      <BuyCreditsModal />
-    </>
-  );
+  return <CreditPurchaseModal />;
 }
