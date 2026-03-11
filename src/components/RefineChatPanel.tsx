@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useGenerationQueueStore } from "@/store/generationQueueStore";
+import { useCreditsStore } from "@/store/creditsStore";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
 
@@ -41,6 +42,7 @@ export default function RefineChatPanel({
 }: Props) {
   const router = useRouter();
   const { addRefinement, updateStatus } = useGenerationQueueStore();
+  const { deductCredit, credits, setShowOutOfCredits } = useCreditsStore();
 
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -73,6 +75,13 @@ export default function RefineChatPanel({
 
   const handleSend = (prompt: string) => {
     if (!prompt.trim() || isGenerating) return;
+
+    // Check credits before allowing refinement
+    if (credits <= 0) {
+      setShowOutOfCredits(true);
+      return;
+    }
+    deductCredit();
 
     addMessage({ role: "user", content: prompt });
     setIsGenerating(true);

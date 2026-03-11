@@ -1,6 +1,7 @@
 "use client";
 
 import { Bell, Settings, User, Zap } from "lucide-react";
+import CreditsBadge from "./CreditsBadge";
 
 export default function Header() {
   return (
@@ -15,17 +16,14 @@ export default function Header() {
 
       {/* Right side */}
       <div className="flex items-center gap-4">
-        {/* Credits */}
+        {/* Credits label */}
         <div className="flex items-center gap-1.5 text-sm text-gray-600">
           <Zap className="w-4 h-4 text-[#F5A524]" />
           <span className="text-gray-500">1 credit = 1 idea</span>
         </div>
 
-        {/* Credits left */}
-        <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-200 rounded-full px-3 py-1 text-sm">
-          <span className="text-amber-500">🏆</span>
-          <span className="font-medium text-amber-700">18 Left</span>
-        </div>
+        {/* Credits badge + dropdown */}
+        <CreditsBadge />
 
         {/* User */}
         <span className="text-sm text-gray-600 hidden md:block">utkarshsingh1908@...</span>
