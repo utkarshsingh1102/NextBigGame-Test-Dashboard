@@ -24,7 +24,7 @@ type CreditsStore = {
 };
 
 export const useCreditsStore = create<CreditsStore>((set, get) => ({
-  credits: 25,
+  credits: 0,
   showOutOfCredits: false,
   showBuyCredits: false,
 
