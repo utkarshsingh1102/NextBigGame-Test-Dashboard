@@ -15,6 +15,7 @@ export const CREDIT_PACKS: CreditPack[] = [
 
 type CreditsStore = {
   credits: number;
+  startingCredits: number;
   showOutOfCredits: boolean;
   showBuyCredits: boolean;
   deductCredit: () => boolean;
@@ -25,6 +26,7 @@ type CreditsStore = {
 
 export const useCreditsStore = create<CreditsStore>((set, get) => ({
   credits: 0,
+  startingCredits: 50,
   showOutOfCredits: false,
   showBuyCredits: false,
 
@@ -36,7 +38,10 @@ export const useCreditsStore = create<CreditsStore>((set, get) => ({
   },
 
   addCredits: (amount: number) => {
-    set((state) => ({ credits: state.credits + amount }));
+    set((state) => ({
+      credits: state.credits + amount,
+      startingCredits: state.startingCredits + amount,
+    }));
   },
 
   setShowOutOfCredits: (val: boolean) => set({ showOutOfCredits: val }),
