@@ -31,7 +31,7 @@ export default function QueueSubItem({
         {refinement.title}
       </span>
       {statusLabel[refinement.status] && (
-        <span className="text-[9px] text-gray-400 flex-shrink-0 whitespace-nowrap">
+        <span className="text-[10px] text-gray-400 flex-shrink-0 whitespace-nowrap leading-none">
           {statusLabel[refinement.status]}
         </span>
       )}

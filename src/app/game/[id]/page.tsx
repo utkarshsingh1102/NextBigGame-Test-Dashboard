@@ -3,14 +3,21 @@ import GameDetailHeader from "@/components/GameDetailHeader";
 import InfoAccordion from "@/components/InfoAccordion";
 import RelatedGamesSection from "@/features/game-detail/RelatedGamesSection";
 import RefineFeature from "@/components/RefineFeature";
+import { Target } from "lucide-react";
 
 export default function GameDetailPage() {
   const { id, title, sourceGameA, sourceGameB, resultGame, infoCards, objective } =
     gameDetail;
 
+  // Merge objective as a top-level info card so all game details live together
+  const allSections = [
+    ...infoCards,
+    { id: "objective", title: "Objective", body: objective },
+  ];
+
   return (
-    <div className="max-w-7xl mx-auto px-8 py-8 space-y-10">
-      {/* Section 1: Page title + game screenshots */}
+    <div className="max-w-5xl mx-auto px-6 py-8 space-y-8">
+      {/* Section 1: Game header — title + fusion visual */}
       <GameDetailHeader
         title={title}
         sourceGameA={sourceGameA}
@@ -18,7 +25,7 @@ export default function GameDetailPage() {
         resultGame={resultGame}
       />
 
-      {/* Section 2: Refine More — above accordion */}
+      {/* Section 2: Refine CTA — contextual call to action */}
       <RefineFeature
         ideaId={id}
         rootIdeaId={id}
@@ -26,18 +33,16 @@ export default function GameDetailPage() {
         parentGradient={resultGame.gradient}
       />
 
-      {/* Section 3: Accordion info sections */}
-      <InfoAccordion sections={infoCards} />
-
-      {/* Section 4: Objective */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-        <h2 className="text-xs font-semibold text-[#F5A524] uppercase tracking-widest mb-3">
-          Objective
+      {/* Section 3: Game detail accordion — all sections */}
+      <div>
+        <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+          <Target className="w-3.5 h-3.5" />
+          Game Design Details
         </h2>
-        <p className="text-sm text-gray-700 leading-relaxed">{objective}</p>
+        <InfoAccordion sections={allSections} />
       </div>
 
-      {/* Section 5: Related Games with working filter */}
+      {/* Section 4: Related Games */}
       <RelatedGamesSection games={relatedGames} totalCount={181} />
     </div>
   );

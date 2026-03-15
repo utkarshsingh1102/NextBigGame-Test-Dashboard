@@ -23,7 +23,7 @@ export default function Sidebar() {
     <aside className="fixed top-14 left-0 bottom-0 w-64 bg-white border-r border-gray-200 flex flex-col overflow-y-auto">
       {/* Navigation */}
       <div className="px-4 pt-6 pb-2">
-        <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2 px-2">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 px-2">
           Navigation
         </p>
         <nav className="space-y-0.5">
@@ -54,7 +54,7 @@ export default function Sidebar() {
 
       {/* Generation Queue */}
       <div className="px-4 pt-4 pb-6">
-        <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2 px-2">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 px-2">
           Generation Queue
         </p>
         <div className="space-y-0.5">

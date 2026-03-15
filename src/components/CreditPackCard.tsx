@@ -30,7 +30,7 @@ export default function CreditPackCard({ pack, isSelected, onSelect, isBestValue
           className="absolute top-0 left-1/2 -translate-x-1/2 z-10 px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white whitespace-nowrap"
           style={{ background: "linear-gradient(135deg, #f97316, #a855f7)" }}
         >
-          🔥 Best Value
+          ★ Best Value
         </div>
       )}
 

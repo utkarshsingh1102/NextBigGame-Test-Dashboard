@@ -18,7 +18,7 @@ export default function ChatMessage({ role, content, isLoading }: Props) {
   return (
     <div className="flex items-start gap-2.5">
       <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-400 to-purple-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <span className="text-white text-[9px] font-bold">AI</span>
+        <span className="text-white text-[10px] font-bold leading-none">AI</span>
       </div>
       <div className="max-w-[80%] bg-gray-50 border border-gray-100 text-gray-700 text-sm rounded-2xl rounded-tl-sm px-4 py-2.5 leading-relaxed">
         {isLoading ? (

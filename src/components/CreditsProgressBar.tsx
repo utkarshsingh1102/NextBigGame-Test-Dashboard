@@ -31,7 +31,7 @@ export default function CreditsProgressBar({ current, total }: Props) {
         <span className="text-xs text-gray-400">
           <span className="font-semibold text-gray-700">{current}</span> / {total} credits remaining
         </span>
-        <span className="text-[10px] font-semibold text-gray-400">{Math.round(pct)}%</span>
+        <span className="text-xs font-semibold text-gray-400">{Math.round(pct)}%</span>
       </div>
     </div>
   );

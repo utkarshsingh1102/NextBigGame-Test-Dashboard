@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CheckCircle2, Layers } from "lucide-react";
 import GameGrid from "@/components/GameGrid";
 import type { GameCard } from "@/data/gameDetail";
 
@@ -10,8 +11,20 @@ type Props = {
 };
 
 const TABS = [
-  { priority: 2 as const, label: "Priority 2: Exact Single Matches", count: 29 },
-  { priority: 3 as const, label: "Priority 3: Partial Matches", count: 152 },
+  {
+    priority: 2 as const,
+    label: "Exact Matches",
+    count: 29,
+    icon: CheckCircle2,
+    iconClass: "text-green-500",
+  },
+  {
+    priority: 3 as const,
+    label: "Partial Matches",
+    count: 152,
+    icon: Layers,
+    iconClass: "text-gray-400",
+  },
 ];
 
 export default function RelatedGamesSection({ games, totalCount }: Props) {
@@ -20,28 +33,46 @@ export default function RelatedGamesSection({ games, totalCount }: Props) {
   const filtered = games.filter((g) => g.priority === activePriority);
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-xl font-medium text-[#F5A524]">
-        Related Games ({totalCount})
-      </h2>
+    <div className="space-y-5">
+      {/* Section header */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold text-gray-900">
+          Related Games
+          <span className="ml-2 text-sm font-normal text-gray-400">
+            ({totalCount})
+          </span>
+        </h2>
+      </div>
 
       {/* Filter tabs */}
-      <div className="flex items-center gap-3 flex-wrap">
-        {TABS.map(({ priority, label, count }) => {
+      <div className="flex items-center gap-2 border-b border-gray-100 pb-0">
+        {TABS.map(({ priority, label, count, icon: Icon, iconClass }) => {
           const isActive = activePriority === priority;
           return (
             <button
               key={priority}
               onClick={() => setActivePriority(priority)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm border ${
+              className={`relative flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium transition-colors cursor-pointer ${
                 isActive
-                  ? "bg-white border-[#F5A524] text-[#F5A524]"
-                  : "bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-800"
+                  ? "text-[#F5A524]"
+                  : "text-gray-500 hover:text-gray-800"
               }`}
             >
-              {isActive && <span className="text-green-600 font-bold">✓</span>}
-              {!isActive && <span className="text-gray-400">→</span>}
-              {label} ({count})
+              <Icon className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? "text-[#F5A524]" : iconClass}`} />
+              {label}
+              <span
+                className={`ml-1 text-xs font-semibold px-1.5 py-0.5 rounded-full ${
+                  isActive
+                    ? "bg-amber-50 text-amber-600"
+                    : "bg-gray-100 text-gray-500"
+                }`}
+              >
+                {count}
+              </span>
+              {/* Active underline */}
+              {isActive && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#F5A524] rounded-t" />
+              )}
             </button>
           );
         })}

@@ -19,7 +19,7 @@ export default function CreditPackSelector({ selectedPackId, onChange }: Props) 
         {CREDIT_PACKS.map((pack) => (
           <option key={pack.id} value={pack.id}>
             {pack.credits} Credits — ${pack.price}
-            {pack.id === "pack-120" ? "  🔥 Best Value" : ""}
+            {pack.id === "pack-120" ? "  ★ Best Value" : ""}
           </option>
         ))}
       </select>
